@@ -1,0 +1,1 @@
+/home/brett/workspace/projects/mancala_ex/apps/mancala/_build/dev/rustler_crates/turnutility/release/libturnutility.so: /home/brett/workspace/projects/mancala_ex/apps/mancala/native/turnutility/src/lib.rs
