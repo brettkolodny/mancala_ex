@@ -1,4 +1,0 @@
-# MancalaEx
-
-**TODO: Add description**
-
