@@ -1,0 +1,11 @@
+/home/brett/workspace/projects/mancala_ex/_build/test/rustler_crates/turnutility/release/deps/proc_macro2-3b41c4f87762ead1.rmeta: /home/brett/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-1.0.17/src/lib.rs /home/brett/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-1.0.17/src/parse.rs /home/brett/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-1.0.17/src/detection.rs /home/brett/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-1.0.17/src/fallback.rs /home/brett/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-1.0.17/src/wrapper.rs
+
+/home/brett/workspace/projects/mancala_ex/_build/test/rustler_crates/turnutility/release/deps/libproc_macro2-3b41c4f87762ead1.rlib: /home/brett/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-1.0.17/src/lib.rs /home/brett/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-1.0.17/src/parse.rs /home/brett/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-1.0.17/src/detection.rs /home/brett/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-1.0.17/src/fallback.rs /home/brett/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-1.0.17/src/wrapper.rs
+
+/home/brett/workspace/projects/mancala_ex/_build/test/rustler_crates/turnutility/release/deps/proc_macro2-3b41c4f87762ead1.d: /home/brett/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-1.0.17/src/lib.rs /home/brett/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-1.0.17/src/parse.rs /home/brett/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-1.0.17/src/detection.rs /home/brett/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-1.0.17/src/fallback.rs /home/brett/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-1.0.17/src/wrapper.rs
+
+/home/brett/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-1.0.17/src/lib.rs:
+/home/brett/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-1.0.17/src/parse.rs:
+/home/brett/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-1.0.17/src/detection.rs:
+/home/brett/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-1.0.17/src/fallback.rs:
+/home/brett/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-1.0.17/src/wrapper.rs:
