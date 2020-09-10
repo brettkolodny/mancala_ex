@@ -1,0 +1,3 @@
+<%= f = form_for(@conn, Routes.session_path(@conn, :create_game)) %>
+  Game Name: <%= text_input f, :game_name %>
+</form>

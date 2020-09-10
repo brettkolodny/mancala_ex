@@ -1,26 +1,19 @@
-# This file is responsible for configuring your umbrella
-# and **all applications** and their dependencies with the
-# help of Mix.Config.
+# This file is responsible for configuring your application
+# and its dependencies with the aid of the Mix.Config module.
 #
-# Note that all applications in your umbrella share the
-# same configuration and dependencies, which is why they
-# all use the same configuration file. If you want different
-# configurations or dependencies per app, it is best to
-# move said applications out of the umbrella.
+# This configuration file is loaded before any dependency and
+# is restricted to this project.
+
+# General application configuration
 use Mix.Config
 
-
-
-config :mancala_ex_web,
-  generators: [context_app: :mancala_ex]
-
 # Configures the endpoint
-config :mancala_ex_web, MancalaExWeb.Endpoint,
+config :mancala, MancalaWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "1ChkQabetxLIi32r0O+k61T6Bn3H3Sg14d7AcHilH/VFr4frQO2PU4jsqK9RRo2i",
-  render_errors: [view: MancalaExWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: MancalaEx.PubSub,
-  live_view: [signing_salt: "dSG34jQf"]
+  secret_key_base: "ZKJCRhw506LK/yFqAKBDUrJ/tIP5bu421WwYQPPUADGAOrhZaGzsYFT7CIlXbJY9",
+  render_errors: [view: MancalaWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Mancala.PubSub,
+  live_view: [signing_salt: "XOFEMTNX"]
 
 # Configures Elixir's Logger
 config :logger, :console,
