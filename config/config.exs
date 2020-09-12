@@ -10,10 +10,10 @@ use Mix.Config
 # Configures the endpoint
 config :mancala, MancalaWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "ZKJCRhw506LK/yFqAKBDUrJ/tIP5bu421WwYQPPUADGAOrhZaGzsYFT7CIlXbJY9",
+  secret_key_base: "SR1xcRohAtP5ljcs2j4+hppnJNsvk7GYjF2sgzq3jufOFmYemfQMAonJ+FfTuprS",
   render_errors: [view: MancalaWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Mancala.PubSub,
-  live_view: [signing_salt: "XOFEMTNX"]
+  live_view: [signing_salt: "bJ4d1E9y"]
 
 # Configures Elixir's Logger
 config :logger, :console,

@@ -31,7 +31,6 @@ defmodule MancalaWeb.SessionController do
 
   def create_player(conn, %{ "player_name" => player_name, "color" => color }) do
     player = Player.new(player_name, color)
-    IO.inspect player
     conn = Auth.login(conn, player)
 
     case get_session(conn, "game_name") do

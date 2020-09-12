@@ -35,16 +35,18 @@ defmodule Mancala.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.5.4"},
+      {:phoenix_live_view, "~> 0.13.0"},
+      {:floki, ">= 0.0.0", only: :test},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_dashboard, "~> 0.2"},
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
+      {:rustler, github: "rusterlium/rustler",
+        ref: "e343b8ca", sparse: "rustler_mix"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"},
-      {:rustler, github: "rusterlium/rustler", 
-        ref: "e343b8ca", sparse: "rustler_mix"}
+      {:plug_cowboy, "~> 2.0"}
     ]
   end
 

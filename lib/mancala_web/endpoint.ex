@@ -7,7 +7,7 @@ defmodule MancalaWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_mancala_key",
-    signing_salt: "XJPvtlic"
+    signing_salt: "53yQWGrs"
   ]
 
   socket "/socket", MancalaWeb.UserSocket,

@@ -11,7 +11,7 @@ defmodule MancalaWeb.Auth do
       assign(conn, :current_player, player)
   end
 
-  def authenticate_player(conn, opts) do
+  def authenticate_player(conn, _opts) do
     IO.inspect conn.assigns
     IO.inspect get_session(conn)
       if conn.assigns.current_player do

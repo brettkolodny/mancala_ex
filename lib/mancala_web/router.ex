@@ -4,10 +4,11 @@ defmodule MancalaWeb.Router do
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
-    plug :fetch_flash
+    plug :fetch_live_flash
+    plug :put_root_layout, {MancalaWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug MancalaWeb.Auth
+        plug MancalaWeb.Auth
   end
 
   pipeline :api do
@@ -21,7 +22,12 @@ defmodule MancalaWeb.Router do
     get "/sessions/new-player", SessionController, :new_player
     post "/create-game", SessionController, :create_game
     post "/create-player", SessionController, :create_player
+    resources "/sessions", SessionController, only: [:delete]
     resources "/games", GameController, only: [:show]
+
+    live "/live/game", GameLive
+
+    # live "/", PageLive, :index
   end
 
   # Other scopes may use custom stacks.
