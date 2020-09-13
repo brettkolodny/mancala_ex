@@ -24,4 +24,3 @@ defmodule Mancala.Game do
     end
   end
 end
-  

@@ -16,7 +16,7 @@ defmodule MancalaWeb.SessionController do
 
   def create_game(conn, %{ "game_name" => game_name }) do
     case Registry.lookup(Mancala.GameRegistry, game_name) do
-      [] -> 
+      [] ->
         GameSupervisor.start_game(game_name)
         conn
         |> put_session(:game_name, game_name)

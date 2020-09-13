@@ -5,8 +5,7 @@ defmodule MancalaWeb.GameController do
 
   plug :authenticate_player when action in [:show]
 
-  def show(conn, params) do
-    IO.inspect params
-    live_render(conn, MancalaWeb.GameLive, session: get_session(conn))
+  def show(conn, _params) do
+    render(conn, "game.html")
   end
 end

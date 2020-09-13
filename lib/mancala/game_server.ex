@@ -49,8 +49,8 @@ defmodule Mancala.GameServer do
     GenServer.call(@name, {:take_turn, square})
   end
 
-  def get_game do
-    GenServer.call(@name, :get_board)
+  def get_game(pid) do
+    GenServer.call(pid, :get_board)
   end
 
   def print_game do
@@ -82,7 +82,7 @@ defmodule Mancala.GameServer do
   def print_board_utility(board, 8, string) do
     square = Enum.at(board, 8) |> Integer.to_string
     player_store = Enum.at(board, 7) |> Integer.to_string
-    string <> square <> player_store 
+    string <> square <> player_store
   end
 
   def print_board_utility(board, 13, string) do
