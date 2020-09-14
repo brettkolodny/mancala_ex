@@ -45,12 +45,12 @@ defmodule Mancala.GameServer do
   end
 
   # Client code
-  def take_turn(square) do
-    GenServer.call(@name, {:take_turn, square})
+  def take_turn(via_tuple, square) do
+    GenServer.call(via_tuple, {:take_turn, square})
   end
 
-  def get_game(pid) do
-    GenServer.call(pid, :get_board)
+  def get_game(via_tuple) do
+    GenServer.call(via_tuple, :get_board)
   end
 
   def print_game do

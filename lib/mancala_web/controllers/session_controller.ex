@@ -7,6 +7,8 @@ defmodule MancalaWeb.SessionController do
   alias MancalaWeb.Auth
 
   def new_player(conn, _params) do
+    IO.puts("new player conn")
+    IO.inspect(get_session(conn))
     render(conn, "new_player.html")
   end
 
@@ -34,7 +36,22 @@ defmodule MancalaWeb.SessionController do
     conn = Auth.login(conn, player)
 
     case get_session(conn, "game_name") do
-      nil -> redirect(conn, to: Routes.session_path(conn, :new_game))
+      nil ->
+        if Map.has_key?(get_session(conn), "request_path") do
+          request_path_split = String.split(get_session(conn, :request_path), "/")
+          IO.inspect(request_path_split)
+          conn =
+            case request_path_split do
+              ["", "games", game_name] -> put_session(conn, "game_name", game_name)
+              _ ->
+                IO.inspect(request_path_split)
+                conn
+            end
+
+          redirect(conn, to: get_session(conn, "request_path"))
+        else
+          redirect(conn, to: Routes.session_path(conn, :new_game))
+        end
       game_name -> redirect(conn, to: Routes.game_path(conn, :show, game_name))
     end
   end

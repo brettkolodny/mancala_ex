@@ -10,7 +10,7 @@ defmodule Mancala.Application do
       # Start the Telemetry supervisor
       MancalaWeb.Telemetry,
       # Start the PubSub system
-      {Phoenix.PubSub, name: Mancala.PubSub},
+      {Phoenix.PubSub, [name: Mancala.PubSub, adapter: Phoenix.PubSub.PG2]},
       # Start the Endpoint (http/https)
       MancalaWeb.Endpoint,
       # Start a worker by calling: Mancala.Worker.start_link(arg)
