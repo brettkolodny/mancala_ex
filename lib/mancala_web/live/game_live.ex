@@ -27,7 +27,7 @@ defmodule MancalaWeb.GameLive do
     {:noreply, socket}
   end
 
-  def handle_event("update", game, socket) do
+  def handle_info(%{event: "update", payload: game}, socket) do
     {:noreply, assign(socket, :game, game)}
   end
 
