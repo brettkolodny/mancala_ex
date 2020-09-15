@@ -1,6 +1,56 @@
 /* This file is for your main application css. */
-@import "./phoenix.css";
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 @import "../node_modules/nprogress/nprogress.css";
+@import "./game.scss";
+@import "./new_game.scss";
+@import "./new_player.scss";
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+.container{
+  margin: 0 auto;
+  /* max-width: 80.0rem; */
+  /* padding: 0 2.0rem; */
+  position: relative;
+  width: 100%
+}
+select {
+  width: auto;
+}
+
+/* Headers */
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 138px;
+  background: #fdfdfd;
+  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 2rem;
+  background-color: #F7C948;
+}
+
+#content {
+  margin-top: 138px;
+}
+
+header h1 {
+  margin: 0 auto;
+  font-weight: 600;
+  font-size: 96px;
+  color: #3B3B3B;
+}
+
+header section {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 
 /* LiveView specific classes for your customizations */
 .phx-no-feedback.invalid-feedback,

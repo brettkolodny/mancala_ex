@@ -7,12 +7,33 @@ defmodule Mancala.Game do
     %Mancala.Game{}
   end
 
-  def add_player(game = %Mancala.Game{ player1: nil }, player) do
+  def player_already_connected?(%{player1: player1, player2: player2}, %{csrf_token: csrf_token}) do
+    if player1.csrf_token == csrf_token or player2.csrf_token == csrf_token do
+      true
+    else
+      false
+    end
+  end
+
+  def add_player(game, player) do
+    IO.inspect(game)
+    if player_already_connected?(game, player) do
+      game
+    else
+      add_new_player(game, player)
+    end
+  end
+
+  defp add_new_player(game = %Mancala.Game{ player1: %{csrf_token: crsf} }, player) when crsf == nil do
     %Mancala.Game{ game | player1: player }
   end
 
-  def add_player(game = %Mancala.Game { player2: nil }, player) do
+  defp add_new_player(game = %Mancala.Game{ player2: %{csrf_token: crsf} }, player) when crsf == nil do
     %Mancala.Game{ game | player2: player }
+  end
+
+  defp add_new_player(game, _player) do
+    game
   end
 
   def take_turn(%{board: board, player1_turn: turn} = game, start) do

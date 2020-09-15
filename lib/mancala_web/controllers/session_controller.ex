@@ -32,19 +32,18 @@ defmodule MancalaWeb.SessionController do
   end
 
   def create_player(conn, %{ "player_name" => player_name, "color" => color }) do
-    player = Player.new(player_name, color)
+    crsf_token = get_session(conn, "_csrf_token")
+    player = Player.new(player_name, color, crsf_token)
     conn = Auth.login(conn, player)
 
     case get_session(conn, "game_name") do
       nil ->
         if Map.has_key?(get_session(conn), "request_path") do
           request_path_split = String.split(get_session(conn, :request_path), "/")
-          IO.inspect(request_path_split)
           conn =
             case request_path_split do
               ["", "games", game_name] -> put_session(conn, "game_name", game_name)
               _ ->
-                IO.inspect(request_path_split)
                 conn
             end
 

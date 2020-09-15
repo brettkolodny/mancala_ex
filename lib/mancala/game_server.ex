@@ -34,6 +34,11 @@ defmodule Mancala.GameServer do
     {:reply, game, game}
   end
 
+  def handle_call({:add_player, player}, _from, game) do
+    game = Mancala.Game.add_player(game, player)
+    {:reply, game, game}
+  end
+
   def handle_cast(:print_game, game) do
     IO.inspect game
     {:noreply, game}
@@ -47,6 +52,10 @@ defmodule Mancala.GameServer do
   # Client code
   def take_turn(via_tuple, square) do
     GenServer.call(via_tuple, {:take_turn, square})
+  end
+
+  def add_player(via_tuple, player) do
+    GenServer.call(via_tuple, {:add_player, player})
   end
 
   def get_game(via_tuple) do
