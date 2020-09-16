@@ -7,8 +7,6 @@ defmodule MancalaWeb.SessionController do
   alias MancalaWeb.Auth
 
   def new_player(conn, _params) do
-    IO.puts("new player conn")
-    IO.inspect(get_session(conn))
     render(conn, "new_player.html")
   end
 
@@ -17,6 +15,7 @@ defmodule MancalaWeb.SessionController do
   end
 
   def create_game(conn, %{ "game_name" => game_name }) do
+    game_name = URI.encode(game_name)
     case Registry.lookup(Mancala.GameRegistry, game_name) do
       [] ->
         GameSupervisor.start_game(game_name)
@@ -31,7 +30,7 @@ defmodule MancalaWeb.SessionController do
     end
   end
 
-  def create_player(conn, %{ "player_name" => player_name, "color" => color }) do
+  def create_player(conn, %{ "player_name" => player_name, "color" => color }) when player_name != "" and color != "" do
     crsf_token = get_session(conn, "_csrf_token")
     player = Player.new(player_name, color, crsf_token)
     conn = Auth.login(conn, player)
@@ -53,6 +52,12 @@ defmodule MancalaWeb.SessionController do
         end
       game_name -> redirect(conn, to: Routes.game_path(conn, :show, game_name))
     end
+  end
+
+  def create_player(conn, _params) do
+    conn
+    |> put_flash(:error, "Please enter a name and color.")
+    |> redirect(to: Routes.session_path(conn, :new_player))
   end
 
   def delete(conn, _params) do

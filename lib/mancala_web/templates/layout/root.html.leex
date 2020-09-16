@@ -10,13 +10,18 @@
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body>
+    <div id="nav">
+      <%= link "Home", to: Routes.session_path(@conn, :new_game) %>
+      <%= if @current_player do%>
+        <%= link "Disconnect", to: Routes.session_path(@conn, :delete, @current_player.name), method: "delete" %>
+      <% end %>
+    </div>
     <header>
-    <%= if @current_player do%>
-      <%= link "Disconnect", to: Routes.session_path(@conn, :delete, @current_player.name), method: "delete" %>
-    <% end %>
       <section class="container">
         <h1>Mancala</h1>
       </section>
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
     </header>
     <%= @inner_content %>
   </body>

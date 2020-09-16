@@ -16,7 +16,6 @@ defmodule Mancala.Game do
   end
 
   def add_player(game, player) do
-    IO.inspect(game)
     if player_already_connected?(game, player) do
       game
     else

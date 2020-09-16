@@ -4,12 +4,41 @@
   justify-content: center;
   width: 40%;
   margin: 0 auto;
+  margin-top: 30vh;
 }
 
 #new-game-container > form {
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  button {
+    --shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 168px;
+    height: 45px;
+    margin: 0 auto;
+    margin-top: 45px;
+  
+    background: #FADB5F;
+    border: none;
+    box-shadow: var(--shadow);
+    border-radius: 100px;
+  
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 32px;
+    line-height: 45px;
+    text-align: center;
+  
+    transition: box-shadow, .25s;
+    color: #3B3B3B;
+  }
+
+  button:hover {
+    --shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+  }
 }
 
 #new-game-container #game_name {
@@ -25,7 +54,7 @@
 
   font-family: "Poppins";
   font-size: 18px;
-
+  text-align: center;
   color: #3B3B3B;
 }
 

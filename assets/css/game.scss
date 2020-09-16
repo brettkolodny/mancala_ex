@@ -1,3 +1,61 @@
+#game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h1 {
+    width: 1388px;
+    align-self: center;
+    color: #3B3B3B;
+    font-size: 48px;
+    line-height: 48px;
+    margin-top: 46px;
+    margin-bottom: 46px;
+  }
+}
+
+#game-link {
+  display: ruby;
+  width: 500px;
+  height: 50px;
+  background: #E1E1E1;
+  border-radius: 8px;
+  margin: 0 auto;
+  margin-top: 46px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  #link-text {
+    width: 80%;
+    height: 50px;
+    padding: 0px;
+    border-radius: 8px 0px 0px 8px;
+    border: none;
+    background-color: inherit;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 50px;
+    font-size: 16px;
+  }
+
+  #copy-button {
+    width: 20%;
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    font-weight: 400;
+    color: #F7F7F7;
+
+    background: #CB6E17;
+    border-radius: 0px 8px 8px 0px;
+
+    float: right;
+  }
+
+  #copy-button:hover {
+    cursor: pointer;
+  }
+}
+
 #board-container {
   display: flex;
   flex-direction: column;
@@ -7,7 +65,7 @@
   background: #FEEDD3;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
-  margin: 0 auto;
+  align-self: center;
 }
 
 #game-board {
@@ -59,22 +117,6 @@
   place-self: center;
 }
 
-.red {
-  background: #F86A6A;
-}
-
-.blue {
-  background: #2BB0ED;
-}
-
-.yellow {
-  background: #F0B429;
-}
-
-.green {
-  background: #0C6B58;
-}
-
 .stone {
   width: 92px;
   height: 92px;
@@ -86,4 +128,11 @@
   border-radius: 100%;
   margin: 0 auto;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: box-shadow .25s;
+}
+
+.clickable:hover {
+  box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+  transition: box-shadow .25s;
+  cursor: pointer;
 }

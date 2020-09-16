@@ -4,12 +4,27 @@
     <%= text_input f, :player_name %>
     <h2>Color</h2>
     <div id="player-colors">
-      <%= radio_button f, :color, "red", [id: "color-red", class: "player-color"] %>
-      <%= radio_button f, :color, "blue", [id: "color-blue", class: "player-color"] %>
-      <%= radio_button f, :color, "yello", [id: "color-yellow", class: "player-color"] %>
-      <%= radio_button f, :color, "green", [id: "color-green", class: "player-color"] %>
+      <label>
+        <%= radio_button f, :color, "red", class: "player-color" %>
+        <span class="red"></span>
+      </label>
+
+      <label>
+        <%= radio_button f, :color, "blue", class: "player-color" %>
+        <span class="blue"></span>
+      </label>
+
+      <label>
+        <%= radio_button f, :color, "yellow", class: "player-color" %>
+        <span class="yellow"></span>
+      </label>
+
+      <label>
+        <%= radio_button f, :color, "green", class: "player-color" %>
+        <span class="green"></span>
+      </label>
+
     </div>
-    <%= select f, :color, ["Red": "red", "Blue": "blue", "Yellow": "yellow", "Green": "green"]%>
     <br>
     <%= submit do: "Start" %>
 </div>

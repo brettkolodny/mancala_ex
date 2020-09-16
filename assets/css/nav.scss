@@ -1,0 +1,15 @@
+#nav {
+  z-index: 2;
+
+  a {
+    text-decoration: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #3B3B3B;
+    font-weight: 700;
+  }
+
+  a:active {
+    color: #3B3B3B;
+  }
+}

@@ -16,6 +16,19 @@
   color: #3B3B3B;
 }
 
+#new-player-container input[type="text"] {
+  width: 100%;
+  height: 54px;
+
+  background: #FFFFFF;
+  border: 1px solid #B1B1B1;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+
+  text-align: center;
+}
+
 #new-player-container form {
   display: flex;
   flex-direction: column;
@@ -39,4 +52,48 @@
   text-align: center;
 
   color: #3B3B3B;
+}
+
+#player-colors {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  
+  label {
+    position: relative;
+    
+    input[type=radio] {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      position: absolute;
+    }
+
+    span {
+      --shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+      --opacity: 80%;
+      
+      display: inline-block;
+      height: 74px;
+      width: 74px;
+      box-shadow: var(--shadow);
+      border-radius: 8px 8px 8px 8px;
+      transition: .1s;
+      position: relative;
+      opacity: var(--opacity);
+    }
+
+    &:hover input ~ span {
+      --shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      --opacity: 100%;
+      cursor: pointer;
+    }
+    
+    input:checked ~ span {
+      --shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+      --opacity: 100%;
+    }
+  }
 }

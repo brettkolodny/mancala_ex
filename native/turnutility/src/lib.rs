@@ -1,6 +1,8 @@
 const PLAYER_1_STORE: usize = 7;
 const PLAYER_2_STORE: usize = 0;
 
+const CAPTURE_LOOKUP: [usize; 14] = [0, 13, 12, 11, 10, 9, 8, 0, 6, 5, 4, 3, 2, 1];
+
 #[rustler::nif]
 fn take_turn(board: Vec::<u32>, start: usize, player_one: bool) -> (Vec::<u32>, bool) {
     if player_one && start < 14 && start > 7 {
@@ -66,18 +68,20 @@ fn take_turn(board: Vec::<u32>, start: usize, player_one: bool) -> (Vec::<u32>, 
         extra_turn = true;
     } else if was_empty  && index != PLAYER_1_STORE && index != PLAYER_2_STORE {
         if player_one && end > 0 && end < 7 {
-            let total = board[end] + board[end + 7];
+            let opposite_index = CAPTURE_LOOKUP[end as usize];
+            let total = board[end] + board[opposite_index];
 
             board[end] = 0;
-            board[end + 7] = 0;
+            board[opposite_index] = 0;
             
             board[PLAYER_1_STORE] += total;
         }
         else if !player_one && end > 7 && end < 14 {
-            let total = board[end] + board[end - 7];
+            let opposite_index = CAPTURE_LOOKUP[end as usize];
+            let total = board[end] + board[opposite_index];
 
             board[end] = 0;
-            board[end - 7] = 0;
+            board[opposite_index] = 0;
             
             board[PLAYER_2_STORE] += total;
         }
