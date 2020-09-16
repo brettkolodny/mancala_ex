@@ -30,6 +30,10 @@ defmodule Mancala.GameServer do
     {:reply, new_game_state, new_game_state}
   end
 
+  def handle_call(:winner, _from, game) do
+    {:reply, TurnUtility.winner(game.board), game}
+  end
+
   def handle_call(:get_board, _from, game) do
     {:reply, game, game}
   end
@@ -52,6 +56,10 @@ defmodule Mancala.GameServer do
   # Client code
   def take_turn(via_tuple, square) do
     GenServer.call(via_tuple, {:take_turn, square})
+  end
+
+  def winner?(via_tuple) do
+    GenServer.call(via_tuple, :winner)
   end
 
   def add_player(via_tuple, player) do

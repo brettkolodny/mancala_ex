@@ -15,7 +15,7 @@ defmodule MancalaWeb.SessionController do
   end
 
   def create_game(conn, %{ "game_name" => game_name }) do
-    game_name = URI.encode(game_name)
+    #game_name = URI.encode(game_name)
     case Registry.lookup(Mancala.GameRegistry, game_name) do
       [] ->
         GameSupervisor.start_game(game_name)

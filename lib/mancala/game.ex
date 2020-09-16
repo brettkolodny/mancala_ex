@@ -43,4 +43,8 @@ defmodule Mancala.Game do
       false -> %{ game | board: board, player1_turn: !turn }
     end
   end
+
+  def winner?(game) do
+    TurnUtility.winner(game.board)
+  end
 end

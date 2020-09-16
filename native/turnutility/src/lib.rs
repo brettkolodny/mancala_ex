@@ -93,40 +93,52 @@ fn take_turn(board: Vec::<u32>, start: usize, player_one: bool) -> (Vec::<u32>, 
 
 #[rustler::nif]
 fn winner(board: Vec<u32>) -> (bool, u32) {
-    let mut player1_stones_needed = 0;
-    let mut player1_stones_left = 0;
-    for index in 1..PLAYER_1_STORE {
-        if board[index] > player1_stones_needed {
-            return (false, 0);  
-        } else {
-            player1_stones_needed += 1;
-            player1_stones_left += board[index];
-        }
-    }
+    // let (player1_done, player2_done) = (true, true);
 
-    let mut player2_stones_needed = 0;
-    let mut player2_stones_left = 0;
-    for index in (PLAYER_1_STORE + 1)..(board.len() - 1) {
-        if board[index] > player2_stones_needed {
-            return (false, 0);  
-        } else {
-            player2_stones_needed += 1;
-            player2_stones_left += board[index];
-        }
-    }
+    // for index in 1..PLAYER_1_STORE {
+    //     if board[index] > player1_stones_needed {
+    //         return (false, 0);  
+    //     } else {
+    //         player1_stones_needed += 1;
+    //         player1_stones_left += board[index];
+    //     }
+    // }
 
-    let is_winner = {
-        let player1_score = board[PLAYER_1_STORE] + player1_stones_left;
-        let player2_score = board[PLAYER_2_STORE] + player2_stones_left;
+    // let mut player2_stones_needed = 0;
+    // let mut player2_stones_left = 0;
+    // for index in (PLAYER_1_STORE + 1)..(board.len() - 1) {
+    //     if board[index] > player2_stones_needed {
+    //         return (false, 0);  
+    //     } else {
+    //         player2_stones_needed += 1;
+    //         player2_stones_left += board[index];
+    //     }
+    // }
 
-        if player1_score > player2_score {
-            (true, 1) 
-        } else {
-            (true, 1)
-        }
-    };
+    // let is_winner = {
+    //     let player1_score = board[PLAYER_1_STORE] + player1_stones_left;
+    //     let player2_score = board[PLAYER_2_STORE] + player2_stones_left;
 
-    is_winner
+    //     if player1_score > player2_score {
+    //         (true, 1) 
+    //     } else {
+    //         (true, 2)
+    //     }
+    // };
+
+    // is_winner
+    (false, 0)
 }
+
+fn advance_board(mut board: Vec<u32>, index: usize) -> Vec<u32> {
+    let mut num_stones = board[index];
+    
+    // board[]
+    // while num_stones != 0 {
+
+    // }
+
+    board
+} 
 
 rustler::init!("Elixir.TurnUtility", [take_turn, winner]);

@@ -25,8 +25,6 @@ defmodule MancalaWeb.Router do
     resources "/sessions", SessionController, only: [:delete]
     resources "/games", GameController, only: [:show]
 
-    live "/game", GameLive
-
     # live "/", PageLive, :index
   end
 

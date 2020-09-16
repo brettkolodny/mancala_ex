@@ -26,6 +26,8 @@ defmodule MancalaWeb.GameLive do
     game = Mancala.GameServer.take_turn(game_via_tuple, square)
     socket = assign(socket, :game, game)
 
+    IO.inspect(Mancala.GameServer.winner?(game_via_tuple))
+
     MancalaWeb.Endpoint.broadcast_from(self(), socket.assigns.game_name, "update", game)
 
     {:noreply, socket}
