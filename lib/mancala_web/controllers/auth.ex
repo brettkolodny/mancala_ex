@@ -15,10 +15,15 @@ defmodule MancalaWeb.Auth do
     if conn.assigns.current_player do
         conn
     else
-        conn = put_session(conn, :request_path, conn.request_path)
-        redirect(conn, to: Routes.session_path(conn, :new_player))
-        halt(conn)
+        conn
+        |> put_session(:request_path, conn.request_path)
+        |> redirect_to_new_player
+        |> halt
     end
+  end
+
+  defp redirect_to_new_player(conn) do
+    redirect(conn, to: Routes.session_path(conn, :new_player))
   end
 
   def login(conn, player) do
