@@ -19,19 +19,17 @@ defmodule Mancala.GameServer do
   end
 
   def handle_call({:take_turn, square}, _from, game) do
-    {new_board, extra_turn} = TurnUtility.take_turn(game.board, square, game.player1_turn)
+    # {new_board, extra_turn} = TurnUtility.take_turn(game.board, square, game.player1_turn)
 
-    new_game_state =
-      case extra_turn do
-        true -> %{ game | board: new_board }
-        false -> %{ game | player1_turn: !game.player1_turn, board: new_board }
-      end
+    # new_game_state =
+    #   case extra_turn do
+    #     true -> %{ game | board: new_board }
+    #     false -> %{ game | player1_turn: !game.player1_turn, board: new_board }
+    #   end
+
+    new_game_state = Mancala.Game.take_turn(game, square)
 
     {:reply, new_game_state, new_game_state}
-  end
-
-  def handle_call(:winner, _from, game) do
-    {:reply, TurnUtility.winner(game.board), game}
   end
 
   def handle_call(:get_board, _from, game) do
@@ -56,10 +54,6 @@ defmodule Mancala.GameServer do
   # Client code
   def take_turn(via_tuple, square) do
     GenServer.call(via_tuple, {:take_turn, square})
-  end
-
-  def winner?(via_tuple) do
-    GenServer.call(via_tuple, :winner)
   end
 
   def add_player(via_tuple, player) do

@@ -24,9 +24,8 @@ defmodule MancalaWeb.GameLive do
     square = String.to_integer(square)
     game_via_tuple = socket.assigns.game_via_tuple
     game = Mancala.GameServer.take_turn(game_via_tuple, square)
-    socket = assign(socket, :game, game)
 
-    IO.inspect(Mancala.GameServer.winner?(game_via_tuple))
+    socket = assign(socket, :game, game)
 
     MancalaWeb.Endpoint.broadcast_from(self(), socket.assigns.game_name, "update", game)
 
@@ -54,10 +53,15 @@ defmodule MancalaWeb.GameLive do
           <div id="copy-button" onClick="copyText()">Copy</div>
         </div>
         <h1>
-          <%= if @game.player1_turn do %>
-            <%= @game.player1.name || "Player 1" %>'s turn
-          <% else %>
-            <%= @game.player2.name || "Player 2" %>'s turn
+          <%= case @game.winner do %>
+            <% {false, _} -> %>
+              <%= if @game.player1_turn do %>
+                <%= @game.player1.name || "Player 1" %>'s turn
+              <% else %>
+                <%= @game.player2.name || "Player 2" %>'s turn
+              <% end %>
+            <% {true, winner} -> %>
+              <%= winner %> wins!
           <% end %>
         </h1>
         <div id="board-container">

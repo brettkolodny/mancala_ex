@@ -74,57 +74,70 @@ fn take_turn(board: Vec::<u32>, start: usize, player_one: bool) -> (Vec::<u32>, 
     } else if was_empty && end != PLAYER_1_STORE && end != PLAYER_2_STORE {
         if player_one && end > 0 && end < 7 {
             let opposite_index = CAPTURE_LOOKUP[end as usize];
-            let total = board[end] + board[opposite_index];
 
-            board[end] = 0;
-            board[opposite_index] = 0;
-            
-            board[PLAYER_1_STORE] += total;
+            if board[opposite_index] != 0 {
+                let total = board[end] + board[opposite_index];
+
+                board[end] = 0;
+                board[opposite_index] = 0;
+                
+                board[PLAYER_1_STORE] += total;
+            }
         }
         else if !player_one && end > 7 && end < 14 {
             let opposite_index = CAPTURE_LOOKUP[end as usize];
-            let total = board[end] + board[opposite_index];
-
-            board[end] = 0;
-            board[opposite_index] = 0;
             
-            board[PLAYER_2_STORE] += total;
+            if board[opposite_index] != 0 {
+                let total = board[end] + board[opposite_index];
+
+                board[end] = 0;
+                board[opposite_index] = 0;
+                
+                board[PLAYER_2_STORE] += total;
+            }
         }
+    }
+
+    if extra_turn && side_empty(&board, player_one) {
+        extra_turn = false;
+    } else if !extra_turn && side_empty(&board, !player_one) {
+        extra_turn = true;
     }
 
     (board, extra_turn)
 }
 
+fn side_empty(board: &Vec<u32>, player_one: bool) -> bool {
+    let side = {
+        if player_one {
+            &board[1..7]
+        } else {
+            &board[8..14]
+        }
+    };
+
+    for stones in side {
+        if stones != &0 {
+            return false
+        }
+    }
+
+    true
+}
 
 #[rustler::nif]
 fn winner(board: Vec<u32>) -> (bool, u32) {
-    // let mut new_board = board.clone();
-    // for index in 0..PLAYER_1_STORE {
-    //     num_stones = new_board[index];
-
-    //     if num_stones > (PLAYER_1_STORE - index) {
-    //         return (false, 0);
-    //     } else {
-
-    //     }
-    // }
-
-    // for index in PLAYER_2_STORE..14 {
-
-    // }
-
-    (false, 0)
+    if board[PLAYER_1_STORE] + board[PLAYER_2_STORE] == 48 {
+        if board[PLAYER_1_STORE] > board[PLAYER_2_STORE] {
+            (true, 1)
+        } else if board[PLAYER_1_STORE] < board[PLAYER_2_STORE] {
+            (true, 2)
+        } else {
+            (true, 0)
+        }
+    } else {
+        (false, 0)
+    }
 }
-
-fn advance_board(mut board: Vec<u32>, index: usize) -> Vec<u32> {
-    let mut num_stones = board[index];
-    
-    // board[]
-    // while num_stones != 0 {
-
-    // }
-
-    board
-} 
 
 rustler::init!("Elixir.TurnUtility", [take_turn, winner]);

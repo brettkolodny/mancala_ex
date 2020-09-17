@@ -1,7 +1,7 @@
 defmodule Mancala.Game do
   alias Mancala.Game.Player
 
-  defstruct board: [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4], player1_turn: true, player1: %Player{}, player2: %Player{}
+  defstruct board: [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4], player1_turn: true, player1: %Player{}, player2: %Player{}, winner: {false, ""}
 
   def new() do
     %Mancala.Game{}
@@ -35,16 +35,24 @@ defmodule Mancala.Game do
     game
   end
 
-  def take_turn(%{board: board, player1_turn: turn} = game, start) do
+  def take_turn(game = %{board: board, player1_turn: turn}, start) do
     {board, extra_turn} = TurnUtility.take_turn(board, start, turn)
 
+    winner =
+      case get_winner(board) do
+        {true, 0} -> {true, "It's a tie!"}
+        {true,1} -> {true, game.player1.name}
+        {true, 2} -> {true, game.player2.name}
+        {false, _} -> {false, ""}
+      end
+
     case extra_turn do
-      true -> %{ game | board: board }
-      false -> %{ game | board: board, player1_turn: !turn }
+      true -> %{ game | board: board, winner: winner }
+      false -> %{ game | board: board, player1_turn: !turn, winner: winner }
     end
   end
 
-  def winner?(game) do
-    TurnUtility.winner(game.board)
+  defp get_winner(board) do
+    TurnUtility.winner(board)
   end
 end
