@@ -15,19 +15,33 @@ defmodule MancalaWeb.SessionController do
   end
 
   def create_game(conn, %{ "game_name" => game_name }) do
-    game_name = URI.encode(game_name)
-    case Registry.lookup(Mancala.GameRegistry, game_name) do
-      [] ->
-        GameSupervisor.start_game(game_name)
-        conn
-        |> put_session(:game_name, game_name)
-        |> redirect(to: Routes.game_path(conn, :show, game_name))
+    game_name = sanitize_game_name(game_name)
 
-      _ ->
-        conn
-        |> put_flash(:error, "A game already exists with this name.")
-        |> redirect(to: Routes.session_path(conn, :new_game))
+    if String.length(game_name) == 0 do
+      conn
+      |> put_flash(:error, "Please enter a valid game name.")
+      |> redirect(to: Routes.session_path(conn, :new_game))
+    else
+      case Registry.lookup(Mancala.GameRegistry, game_name) do
+        [] ->
+          GameSupervisor.start_game(game_name)
+          conn
+          |> put_session(:game_name, game_name)
+          |> redirect(to: Routes.game_path(conn, :show, game_name))
+
+        _ ->
+          conn
+          |> put_flash(:error, "A game already exists with this name.")
+          |> redirect(to: Routes.session_path(conn, :new_game))
+      end
     end
+  end
+
+  defp sanitize_game_name(game_name) do
+    game_name
+      |> String.split(" ")
+      |> Enum.join("-")
+      |> URI.encode
   end
 
   def create_player(conn, %{ "player_name" => player_name, "color" => color }) when player_name != "" and color != "" do
