@@ -16,6 +16,7 @@ defmodule MancalaWeb.GameLive do
       |> assign(:game_name, game_name)
       |> assign(:game, game)
       |> assign(:game_via_tuple, game_via_tuple)
+      |> assign(:game_terminated, false)
 
     {:ok, socket}
   end
@@ -36,6 +37,10 @@ defmodule MancalaWeb.GameLive do
     {:noreply, assign(socket, :game, game)}
   end
 
+  def handle_info(%{event: "game-terminated"}, socket) do
+    {:noreply, assign(socket, :game_terminated, true)}
+  end
+
   def render(assigns) do
     ~L"""
       <script>
@@ -47,89 +52,93 @@ defmodule MancalaWeb.GameLive do
           document.execCommand("copy");
         }
       </script>
-      <div id="game-container">
-        <div id="game-link">
-          <input type="text"id="link-text" readonly value="localhost:4000/games/<%= @game_name %>">
-          <div id="copy-button" onClick="copyText()">Copy</div>
-        </div>
-        <h1>
-          <%= case @game.winner do %>
-            <% {false, _} -> %>
-              <%= if @game.player1_turn do %>
-                <%= @game.player1.name || "Player 1" %>'s turn
-              <% else %>
-                <%= @game.player2.name || "Player 2" %>'s turn
+      <%= if @game_terminated do %>
+        <h1>Game over</h1>
+      <% else %>
+        <div id="game-container">
+          <div id="game-link">
+            <input type="text"id="link-text" readonly value="localhost:4000/games/<%= @game_name %>">
+            <div id="copy-button" onClick="copyText()">Copy</div>
+          </div>
+          <h1>
+            <%= case @game.winner do %>
+              <% {false, _} -> %>
+                <%= if @game.player1_turn do %>
+                  <%= @game.player1.name || "Player 1" %>'s turn
+                <% else %>
+                  <%= @game.player2.name || "Player 2" %>'s turn
+                <% end %>
+              <% {true, winner} -> %>
+                <%= winner %> wins!
+            <% end %>
+          </h1>
+          <div id="board-container">
+            <div id="game-board">
+              <div id="player1-store" class="player-store">
+                <div class="stone <%= @game.player2.color || 'yellow' %> score">
+                  <%= Enum.at(@game.board, 0) %>
+                </div>
+              </div>
+
+              <%= for num_square <- 1..6 do %>
+                <div class="square">
+
+                  <%= case Enum.at(@game.board, num_square) do %>
+                    <% 0 -> %>
+                      <div></div>
+                    <% num_stones -> %>
+                      <%= content_tag(
+                        :div,
+                        num_stones,
+                        [
+                          class: [
+                            "stone ",
+                            @game.player1.color || "yellow",
+                            (if @current_player == @game.player1, do: " clickable", else: "")
+                          ],
+                          "phx-value-square": num_square,
+                          "phx-click": (if @current_player == @game.player1, do: "turn", else: nil)
+                        ]
+                      ) %>
+                  <% end %>
+
+                </div>
               <% end %>
-            <% {true, winner} -> %>
-              <%= winner %> wins!
-          <% end %>
-        </h1>
-        <div id="board-container">
-          <div id="game-board">
-            <div id="player1-store" class="player-store">
-              <div class="stone <%= @game.player2.color || 'yellow' %> score">
-                <%= Enum.at(@game.board, 0) %>
-              </div>
-            </div>
 
-            <%= for num_square <- 1..6 do %>
-              <div class="square">
+              <%= for num_square <- 13..8 do %>
+                <div class="square">
 
-                <%= case Enum.at(@game.board, num_square) do %>
-                  <% 0 -> %>
-                    <div></div>
-                  <% num_stones -> %>
-                    <%= content_tag(
-                      :div,
-                      num_stones,
-                      [
-                        class: [
-                          "stone ",
-                          @game.player1.color || "yellow",
-                          (if @current_player == @game.player1, do: " clickable", else: "")
-                        ],
-                        "phx-value-square": num_square,
-                        "phx-click": (if @current_player == @game.player1, do: "turn", else: nil)
-                      ]
-                    ) %>
-                <% end %>
+                  <%= case Enum.at(@game.board, num_square) do %>
+                    <% 0 -> %>
+                      <div></div>
+                    <% num_stones -> %>
+                      <%= content_tag(
+                        :div,
+                        num_stones,
+                        [
+                          class: [
+                            "stone ",
+                            @game.player2.color || "yellow",
+                            (if @current_player == @game.player2, do: " clickable", else: "")
+                          ],
+                          "phx-value-square": num_square,
+                          "phx-click": (if @current_player == @game.player2, do: "turn", else: nil)
+                        ]
+                      ) %>
+                  <% end %>
 
-              </div>
-            <% end %>
+                </div>
+              <% end %>
 
-            <%= for num_square <- 13..8 do %>
-              <div class="square">
-
-                <%= case Enum.at(@game.board, num_square) do %>
-                  <% 0 -> %>
-                    <div></div>
-                  <% num_stones -> %>
-                    <%= content_tag(
-                      :div,
-                      num_stones,
-                      [
-                        class: [
-                          "stone ",
-                          @game.player2.color || "yellow",
-                          (if @current_player == @game.player2, do: " clickable", else: "")
-                        ],
-                        "phx-value-square": num_square,
-                        "phx-click": (if @current_player == @game.player2, do: "turn", else: nil)
-                      ]
-                    ) %>
-                <% end %>
-
-              </div>
-            <% end %>
-
-            <div id="player2-store" class="player-store">
-              <div class="stone <%= @game.player1.color || 'yellow' %> score">
-                <%= Enum.at(@game.board, 7) %>
+              <div id="player2-store" class="player-store">
+                <div class="stone <%= @game.player1.color || 'yellow' %> score">
+                  <%= Enum.at(@game.board, 7) %>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      <% end %>
     """
   end
 end

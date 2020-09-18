@@ -19,6 +19,14 @@ defmodule Mancala.GameSupervisor do
       restart: :transient
     }
 
-    {:ok, _pid} = DynamicSupervisor.start_child(__MODULE__, child_spec)
+    {:ok, pid} = DynamicSupervisor.start_child(__MODULE__, child_spec)
+
+    spawn(fn ->
+      :timer.sleep(3600000)
+      MancalaWeb.Endpoint.broadcast_from(self(), game_name, "game-terminated", %{})
+      DynamicSupervisor.terminate_child(Mancala.GameSupervisor, pid)
+    end)
+
+    {:ok, pid}
   end
 end
