@@ -19,14 +19,6 @@ defmodule Mancala.GameServer do
   end
 
   def handle_call({:take_turn, square}, _from, game) do
-    # {new_board, extra_turn} = TurnUtility.take_turn(game.board, square, game.player1_turn)
-
-    # new_game_state =
-    #   case extra_turn do
-    #     true -> %{ game | board: new_board }
-    #     false -> %{ game | player1_turn: !game.player1_turn, board: new_board }
-    #   end
-
     new_game_state = Mancala.Game.take_turn(game, square)
 
     {:reply, new_game_state, new_game_state}
@@ -111,22 +103,7 @@ defmodule Mancala.GameServer do
   end
 
   def via_tuple(game_name) do
-    tuple = {:via, Registry, {Mancala.GameRegistry, game_name}}
-    IO.inspect tuple
-    tuple
+    {:via, Registry, {Mancala.GameRegistry, game_name}}
   end
 
 end
-
-
-# alias Mancala.GameServer
-
-# {:ok, _pid} = GameServer.start()
-
-# GameServer.print_board()
-# GameServer.take_turn(3)
-# GameServer.print_board()
-# GameServer.take_turn(4)
-# GameServer.print_board()
-# GameServer.take_turn(0)
-# GameServer.print_board()

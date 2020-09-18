@@ -3,7 +3,6 @@ defmodule MancalaWeb.GameLive do
 
   def mount(_params, %{"player" => player, "game_name" => game_name}, socket) do
     game_via_tuple = Mancala.GameServer.via_tuple(game_name)
-
     Mancala.GameServer.add_player(game_via_tuple, player)
     game = Mancala.GameServer.get_game(game_via_tuple)
 
@@ -38,6 +37,7 @@ defmodule MancalaWeb.GameLive do
   end
 
   def handle_info(%{event: "game-terminated"}, socket) do
+    redirect(socket, to: "/test")
     {:noreply, assign(socket, :game_terminated, true)}
   end
 
