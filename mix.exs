@@ -14,7 +14,6 @@ defmodule Mancala.MixProject do
       releases: [
         prod: [
           include_executables_for: [:unix],
-          steps: [:assemble, :tar]
         ]
       ],
       deps: deps()

@@ -11,7 +11,7 @@ use Mix.Config
 # before starting your production server.
 config :mancala, MancalaWeb.Endpoint,
   http: [:inet6, port: {:system, "PORT"}],
-  url: [host: "localhost", port: {:system, "PORT"}], # This is critical for ensuring web-sockets properly authorize.
+  url: [host: "www.mancala.brettkolodny.com", port: {:system, "PORT"}], # This is critical for ensuring web-sockets properly authorize.
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true,
   root: ".",

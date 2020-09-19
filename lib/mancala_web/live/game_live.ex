@@ -57,7 +57,7 @@ defmodule MancalaWeb.GameLive do
       <% else %>
         <div id="game-container">
           <div id="game-link">
-            <input type="text"id="link-text" readonly value="https://www.mancala.brettkolodny.com/games/<%= @game_name %>">
+            <input type="text"id="link-text" readonly value="http://www.mancala.brettkolodny.com/games/<%= @game_name %>">
             <div id="copy-button" onClick="copyText()">Copy</div>
           </div>
           <h1>
