@@ -1,0 +1,30 @@
+<div id="new-player-container">
+  <%= f = form_for(@conn, Routes.session_path(@conn, :create_player)) %>
+    <h2>Name</h2>
+    <%= text_input f, :player_name %>
+    <h2>Color</h2>
+    <div id="player-colors">
+      <label>
+        <%= radio_button f, :color, "red", class: "player-color" %>
+        <span class="red"></span>
+      </label>
+
+      <label>
+        <%= radio_button f, :color, "blue", class: "player-color" %>
+        <span class="blue"></span>
+      </label>
+
+      <label>
+        <%= radio_button f, :color, "yellow", class: "player-color" %>
+        <span class="yellow"></span>
+      </label>
+
+      <label>
+        <%= radio_button f, :color, "green", class: "player-color" %>
+        <span class="green"></span>
+      </label>
+
+    </div>
+    <br>
+    <%= submit do: "Start" %>
+</div>

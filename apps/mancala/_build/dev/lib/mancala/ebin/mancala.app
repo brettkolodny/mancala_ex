@@ -1,9 +1,0 @@
-{application,mancala,
-             [{applications,[kernel,stdlib,elixir,logger,rustler]},
-              {description,"mancala"},
-              {modules,['Elixir.Mancala','Elixir.Mancala.Game',
-                        'Elixir.Mancala.GameServer',
-                        'Elixir.Mancala.GameSupervisor','Elixir.TurnUtility']},
-              {registered,[]},
-              {vsn,"0.1.0"},
-              {mod,{'Elixir.Mancala',[]}}]}.

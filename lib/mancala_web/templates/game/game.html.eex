@@ -1,0 +1,1 @@
+<%= live_render(@conn, MancalaWeb.GameLive, session: %{"player1_turn" => true}) %>

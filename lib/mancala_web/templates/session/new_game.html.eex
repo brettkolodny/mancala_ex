@@ -1,0 +1,7 @@
+<div id="new-game-container">
+  <%= f = form_for(@conn, Routes.session_path(@conn, :create_game)) %>
+    <h2>Enter the Game Name</h2>
+    <%= text_input f, :game_name %>
+    <%= submit do: "Play" %>
+  </form>
+</div>
