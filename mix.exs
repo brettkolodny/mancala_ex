@@ -11,6 +11,12 @@ defmodule Mancala.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       rustler_crates: [turnutility: []],
+      releases: [
+        prod: [
+          include_executables_for: [:unix],
+          steps: [:assemble, :tar]
+        ]
+      ],
       deps: deps()
     ]
   end
@@ -47,7 +53,6 @@ defmodule Mancala.MixProject do
         ref: "e343b8ca", sparse: "rustler_mix"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:distillery, "~> 2.1"}
     ]
   end
 
