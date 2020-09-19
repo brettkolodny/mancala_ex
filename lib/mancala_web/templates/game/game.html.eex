@@ -1,1 +1,18 @@
+<script>
+  window.addEventListener("resize", () => {
+    let header = document.getElementById("header");
+
+    if (window.innerWidth <= 780) {
+      header.style.setProperty("display", "none");
+    } else {
+      header.style.setProperty("display", "inline");
+    }
+  });
+
+  if (window.innerWidth <= 780) {
+    header.style.setProperty("display", "none");
+  } else {
+    header.style.setProperty("display", "inline");
+  }
+</script>
 <%= live_render(@conn, MancalaWeb.GameLive, session: %{"player1_turn" => true}) %>

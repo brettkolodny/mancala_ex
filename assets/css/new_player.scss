@@ -4,59 +4,63 @@
   justify-content: center;
   width: 30%;
   margin: 0 auto;
-}
 
-#new-player-container h2 {
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 32px;
-  line-height: 48px;
+  h2 {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 32px;
+    line-height: 48px;
+  
+    color: #3B3B3B;
+  }
 
-  color: #3B3B3B;
-}
+  form {
+    display: flex;
+    flex-direction: column;
 
-#new-player-container input[type="text"] {
-  width: 100%;
-  height: 54px;
+    input[type="text"] {
+      width: 100%;
+      height: 54px;
+    
+      background: #FFFFFF;
+      border: 1px solid #B1B1B1;
+      box-sizing: border-box;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      font-size: 18px;
+      border-radius: 10px;
+    
+      text-align: center;
+    }
 
-  background: #FFFFFF;
-  border: 1px solid #B1B1B1;
-  box-sizing: border-box;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-size: 18px;
-  border-radius: 10px;
+    button {
+      width: 168px;
+      height: 45px;
+      margin: 0 auto;
+    
+      background: #FADB5F;
+      border: none;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 100px;
+    
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 32px;
+      line-height: 45px;
+      text-align: center;
+    
+      color: #3B3B3B;
+    }
 
-  text-align: center;
-}
+    button:hover {
+      cursor: pointer;
+    }
+  }
 
-#new-player-container form {
-  display: flex;
-  flex-direction: column;
-}
-
-#new-player-container button {
-  width: 168px;
-  height: 45px;
-  margin: 0 auto;
-
-  background: #FADB5F;
-  border: none;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 100px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 32px;
-  line-height: 45px;
-  text-align: center;
-
-  color: #3B3B3B;
-}
-
-#new-player-container button:hover {
-  cursor: pointer;
+  @media only screen and (max-width: 780px) {
+    width: 80%;
+  }
 }
 
 #player-colors {
@@ -99,6 +103,15 @@
     input:checked ~ span {
       --shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
       --opacity: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 780px) {
+    margin-bottom: 60px;
+
+    label span {
+      height: 60px;
+      width: 60px;
     }
   }
 }

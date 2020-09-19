@@ -1,70 +1,80 @@
 #new-game-container {
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 40%;
   margin: 0 auto;
   margin-top: 30vh;
-}
 
-#new-game-container > form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  button {
-    --shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    width: 168px;
-    height: 45px;
-    margin: 0 auto;
-    margin-top: 45px;
-  
-    background: #FADB5F;
-    border: none;
-    box-shadow: var(--shadow);
-    border-radius: 100px;
-  
+  h2 {
     font-family: Poppins;
     font-style: normal;
     font-weight: normal;
     font-size: 32px;
-    line-height: 45px;
+    line-height: 48px;
     text-align: center;
   
-    transition: box-shadow, .25s;
     color: #3B3B3B;
   }
 
-  button:hover {
-    --shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
-    cursor: pointer;
-  }
-}
-
-#new-game-container #game_name {
-  width: 486px;
-  height: 54px;
-  margin: 0 auto;
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   
-  background: #FFFFFF;
-  border: 1px solid #B1B1B1;
-  box-sizing: border-box;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
+    button {
+      --shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      width: 168px;
+      height: 45px;
+      margin: 0 auto;
+      margin-top: 45px;
+    
+      background: #FADB5F;
+      border: none;
+      box-shadow: var(--shadow);
+      border-radius: 100px;
+    
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 32px;
+      line-height: 45px;
+      text-align: center;
+    
+      transition: box-shadow, .25s;
+      color: #3B3B3B;
+    }
+  
+    button:hover {
+      --shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+    }
+  }
 
-  font-family: "Poppins";
-  font-size: 18px;
-  text-align: center;
-  color: #3B3B3B;
-}
+  input[type="text"] {
+    width: 100%;
+    height: 54px;
+    margin: 0 auto;
+    
+    background: #FFFFFF;
+    border: 1px solid #B1B1B1;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+  
+    font-family: "Poppins";
+    font-size: 18px;
+    text-align: center;
+    color: #3B3B3B;
+  }
 
-#new-game-container h2 {
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 32px;
-  line-height: 48px;
-  text-align: center;
+  @media only screen and (max-width: 780px) {
+    width: 80%;
 
-  color: #3B3B3B;
+    h2 {
+      font-size: 24px;
+    }
+
+  }
 }

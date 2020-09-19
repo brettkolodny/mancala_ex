@@ -52,26 +52,33 @@ header {
   border-bottom: 1px solid #eaeaea;
   margin-bottom: 2rem;
   background-color: #F7C948;
+
+  h1 {
+    margin: 0 auto;
+    font-weight: 600;
+    font-size: 96px;
+    color: #3B3B3B;
+  }
+
+  section {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  @media only screen and (max-width: 780px) {
+    height: 100px;
+    
+    h1 {
+      font-size: 72px;
+    }
+  }
 }
 
 #content {
   margin-top: 138px;
 }
-
-header h1 {
-  margin: 0 auto;
-  font-weight: 600;
-  font-size: 96px;
-  color: #3B3B3B;
-}
-
-header section {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 
 /* LiveView specific classes for your customizations */
 .phx-no-feedback.invalid-feedback,
