@@ -88,9 +88,10 @@ defmodule MancalaWeb.GameLive do
                       <div></div>
                     <% num_stones -> %>
                       <%= content_tag(
-                        :div,
+                        :a,
                         num_stones,
                         [
+                          href: "#",
                           class: [
                             "stone ",
                             @game.player1.color || "yellow",
