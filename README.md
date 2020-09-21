@@ -21,5 +21,5 @@ The game server is built upon Erlang's GenServer architecture and exposes an api
 ### Rust NIFs
 The game logic itself is implemented using Rust NIFs (native implemented functions). This code is responsible for determining the game's state after a player's turn and determining if the game has a winner.
 
-#### AWS
+## AWS
 This application is hosted on an AWS EC2 instance.
